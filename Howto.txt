@@ -1,0 +1,17 @@
+Install docker & docker-compose on your machine ( Instructions here https://docs.docker.com/engine/installation/linux/ubuntulinux/)
+docker pull mthakkar/myflask
+docker pull mthakkar/nginx
+docker pull mthakkar/mongo
+git clone http://github.com/mthak/flaskapp
+cd flaskapp
+docker-compose up -d 
+docker-compose ps  ( this shall show you all 3 containers up and running)
+get hostname of your machine ( run "hostname" on your machine)
+curl -k -X POST -H "Content-Type: application/json" -d '{"message": "testme"}' http://<your hostname>:5000/messages ( We are using -k here because the ssl cert is self signed so it's insecure)
+The command above will return you the hash of the message.
+now run 
+curl -X GET http://<yourhostname>/messages/b5888077b511e72f5ece90390c0c00d573a98c7aa1dc09dfb28746cf594009df
+this shall reurn you the mssage for which the hash matches.
+
+
+
