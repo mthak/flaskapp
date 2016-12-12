@@ -1,0 +1,22 @@
+nginx:
+   image: nginx
+   ports:
+    - "443:443"
+   links:
+    - myflask
+   expose:
+    - "443"
+   tty: true
+myflask:
+   image: myflask
+   ports: 
+    - "5000:5000"
+   links: 
+    - mongohost
+   expose:
+    - "5000"
+   tty: true
+   container_name: myflask
+mongohost:
+    image: mongo  
+    container_name: mongohost
