@@ -1,5 +1,5 @@
 nginx:
-   image: nginx
+   image: mthakkar/nginx
    ports:
     - "443:443"
    links:
@@ -8,7 +8,7 @@ nginx:
     - "443"
    tty: true
 myflask:
-   image: myflask
+   image: mthakkar/myflask
    ports: 
     - "5000:5000"
    links: 
@@ -18,5 +18,5 @@ myflask:
    tty: true
    container_name: myflask
 mongohost:
-    image: mongo  
+    image: mthakkar/mongo  
     container_name: mongohost
