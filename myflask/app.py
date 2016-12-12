@@ -31,7 +31,8 @@ def parse_message(msg):
         msgdict['digest'] = shasum_msg
         logging.info(" print message stored in db is %s ", msgdict)
         db.collection.insert_one(msgdict)
-        return msgdict['digest']
+        retval = {'digest' : msgdict['digest'] }
+        return jsonify(retval)
     else:
         exception = dict(
             {"message": "A message with this value already exist"})
