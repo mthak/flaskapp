@@ -17,6 +17,16 @@ myflask:
     - "5000"
    tty: true
    container_name: myflask
+mybart:
+   image: mthakkar/mybartapp
+   ports: 
+    - "8090:8090"
+   links: 
+    - mongohost
+   expose:
+    - "8090"
+   tty: true
+   container_name: mybartapp
 mongohost:
     image: mthakkar/mongo  
     container_name: mongohost
