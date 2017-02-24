@@ -9,14 +9,13 @@ app  = Flask(__name__)
 @app.route('/findroute', methods=['POST'])
 def get_timeschedule():
     params = request.get_json()
-    source = params['source']
-    dest = params['dest']
+    source = params['source'].strip()
+    dest = params['dest'].strip()
     print "source and destination is " , source,dest
     result = []
     newdata = {}
     key="MW9S-E7SL-26DU-VV8V"
     apiurl = "http://api.bart.gov/api/etd.aspx?cmd=etd&orig="+source+"&key="+key
-    print "heelo",apiurl
     xmldata = requests.get(apiurl)
     if xmldata.status_code == 200:
        data  = xmldata.content
@@ -27,6 +26,8 @@ def get_timeschedule():
 
     stationinfo = mydict['root']['station']
     destinationinfo = mydict['root']['station']['etd']
+    if type(destinationinfo) != list:
+       destinationinfo = [ destinationinfo ] 
     for alldestinations in destinationinfo:
         query = False
 	for key,value in alldestinations.items():
@@ -37,9 +38,11 @@ def get_timeschedule():
             if key == "estimate" and query:
 	       for data in value:
                    time = data['minutes']
-                   result.append(time)
+                   sttime = "next train in " + time + "minutes"
+                   result.append(sttime)
                    print data['minutes']
-               newdata['time'] = result
+               newdata['time'] = str(result)
+               print newdata
     return  json.dumps(newdata)
 
 if __name__ == '__main__':
