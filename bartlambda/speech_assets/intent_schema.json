@@ -1,0 +1,26 @@
+{
+    "intents": [
+        {
+            "slots": [
+                {
+                    "type": "Stations",
+                    "name": "srcst"
+                },
+                {
+                    "type": "Stations",
+                    "name": "destination"
+                }
+
+            ],
+            "intent": "GetSchedule"
+        },
+        {
+            "slots": [],
+            "intent": "AMAZON.HelpIntent"
+        },
+        {
+            "slots": [],
+            "intent": "AMAZON.StopIntent"
+        }
+    ]
+}

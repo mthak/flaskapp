@@ -1,0 +1,5 @@
+GetSchedule      from {Stations} to {Stations}
+GetSchedule      Bart from {Stations} to {Stations}
+GetSchedule      Data from {Stations} to {Stations}
+AMAZON.HelpIntent         What are the stations available
+AMAZON.HelpIntent          what can I ask about
